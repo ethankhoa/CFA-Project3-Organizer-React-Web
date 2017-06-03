@@ -1,15 +1,23 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
-import App from './components/App/App';
+import { Router, Route, Switch } from 'react-router-dom';
+import App from './components/Home/Home';
 import Members from './components/Members/Members';
+import Calendar from './components/Calendar/Calendar';
+
 // import NotFound from './components/NotFound';
 
 const Routes = (props) => (
-  <Router {...props}>
-    <Route path="/" component={App} />
-    <Route path="/members" component={Members} />
-    {/* <Route path="*" component={NotFound} /> */}
-  </Router>
+
+  <Switch>
+    <Router>
+      <Route path="/" component={Home} />
+      <Route path='/members' component={Members} />
+      <Route path='/calendar' component={Calendar} />
+
+      {/* <Route path="*" component={NotFound} /> */}
+    </Router>
+  </Switch>
+
 );
 
 export default Routes;

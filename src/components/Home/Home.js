@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import ListMembers from './ListMembers';
 
-class Members extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,12 +12,11 @@ class Members extends Component {
 render() {
   return (
     <div>
-      <h3>Members Portal</h3>
-
+      <h3>Home</h3>
 
     </div>
   )
 };
 }
 
-export default Members;
+export default Home;

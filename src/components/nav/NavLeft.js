@@ -2,40 +2,55 @@ import React, { Component } from 'react';
 // import { Nav, NavItem, NavLink } from 'reactstrap';
 import FaUsers from 'react-icons/lib/fa/group';
 import FaCalendar from 'react-icons/lib/fa/calendar';
-import { Tab, Row, Col, Nav, NavItem } from 'react-bootstrap';
+import FaDashboard from 'react-icons/lib/fa/dashboard';
+
+// import { Tab, Row, Col, Nav, NavItem } from 'react-bootstrap';
+// import { Col, Nav, NavItem } from 'react-bootstrap';
+import { withRR4, Nav, NavText, NavIcon } from 'react-sidenav';
+
 import Members from '../Members/Members';
 import Calendar from '../Calendar/Calendar';
 
+const SideNav = withRR4();
+
 
 class NavLeft extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedKey: 1
+    }
+    this.handleSelect = this.handleSelect.bind(this)
+
+  };
+
+  handleSelect(selectedKey) {
+    // alert('selected ' + selectedKey);
+    this.setState({ selectedKey });
+  };
+
   render() {
     return (
-          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-            <Row className="clearfix">
-              <Col sm={4}>
-                <Nav bsStyle="pills" stacked>
-                  <NavItem eventKey="first">
-                    <FaUsers size={30}/>
-                    <p>Members</p>
-                  </NavItem>
-                  <NavItem eventKey="second">
-                    <FaCalendar size={30}/>
-                    <p>Calendar</p>
-                  </NavItem>
-                </Nav>
-              </Col>
-              <Col sm={8}>
-                <Tab.Content animation>
-                  <Tab.Pane eventKey="first">
-                  <Members />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="second">
-                    <Calendar />
-                  </Tab.Pane>
-                </Tab.Content>
-              </Col>
-            </Row>
-          </Tab.Container>
+      <div style={{background: '#232a2f', color: '#FFF', width: 220}}>
+        <SideNav default='dashboard' highlightBgColor='gray' highlightColor='white'>
+          <Nav id='dashboard'>
+            <NavIcon><FaDashboard size={20} /></NavIcon>
+
+            <NavText>  Dashboard </NavText>
+          </Nav>
+          <Nav id='members'>
+            <NavIcon><FaUsers size={20}/></NavIcon>
+            <NavText> Members </NavText>
+            {/* <Nav id='list'>
+              <NavText> List Sales </NavText>
+            </Nav> */}
+          </Nav>
+          <Nav id='calendar'>
+            <NavIcon><FaCalendar size={20} /></NavIcon>
+              <NavText>  Calendar </NavText>
+          </Nav>
+        </SideNav>
+      </div>
     );
   }
 }
