@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-// import { Nav, NavItem, NavLink } from 'reactstrap';
 import FaUsers from 'react-icons/lib/fa/group';
 import FaCalendar from 'react-icons/lib/fa/calendar';
 import FaDashboard from 'react-icons/lib/fa/dashboard';
-
-// import { Tab, Row, Col, Nav, NavItem } from 'react-bootstrap';
-// import { Col, Nav, NavItem } from 'react-bootstrap';
 import { withRR4, Nav, NavText, NavIcon } from 'react-sidenav';
-
-import Members from '../Members/Members';
-import Calendar from '../Calendar/Calendar';
+import { Link } from 'react-router-dom';
 
 const SideNav = withRR4();
 
@@ -41,9 +35,6 @@ class NavLeft extends Component {
           <Nav id='members'>
             <NavIcon><FaUsers size={20}/></NavIcon>
             <NavText> Members </NavText>
-            {/* <Nav id='list'>
-              <NavText> List Sales </NavText>
-            </Nav> */}
           </Nav>
           <Nav id='calendar'>
             <NavIcon><FaCalendar size={20} /></NavIcon>
