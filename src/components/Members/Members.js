@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ListMembers from './ListMembers';
+
 
 
 class Members extends Component {
@@ -48,8 +50,13 @@ class Members extends Component {
 render() {
   return (
     <div>
+      {/* <Switch>
+        <Route path='/members/addmember' component={AddMember}/>
+      </Switch> */}
       <h3>Members Portal</h3>
+        <Col>
         <ListMembers members={this.state.members} />
+      </Col>
     </div>
   )
 };

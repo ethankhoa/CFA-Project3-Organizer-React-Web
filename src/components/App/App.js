@@ -18,10 +18,10 @@ class App extends Component {
       <div>
         <NavMain />
         <Grid fluid>
-          <Col xs={6} md={4}>
+          <Col xs={6} md={2}>
             <NavLeft />
           </Col>
-          <Col xs={12} md={8}>
+          <Col xs={12} md={10}>
             <Main />
           </Col>
         </Grid>

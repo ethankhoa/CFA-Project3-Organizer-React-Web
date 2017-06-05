@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import FaUsers from 'react-icons/lib/fa/group';
 import FaCalendar from 'react-icons/lib/fa/calendar';
 import FaDashboard from 'react-icons/lib/fa/dashboard';
+import FaUserPlus from 'react-icons/lib/fa/user-plus';
+
 import { withRR4, Nav, NavText, NavIcon } from 'react-sidenav';
 import { Link } from 'react-router-dom';
 
@@ -35,6 +37,10 @@ class NavLeft extends Component {
           <Nav id='members'>
             <NavIcon><FaUsers size={20}/></NavIcon>
             <NavText> Members </NavText>
+            <Nav id='addmember'>
+              <NavIcon><FaUserPlus size={20}/></NavIcon>
+              <NavText> Add Member </NavText>
+            </Nav>
           </Nav>
           <Nav id='calendar'>
             <NavIcon><FaCalendar size={20} /></NavIcon>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const ListMembers = (props) => {
   return(
@@ -9,7 +9,6 @@ const ListMembers = (props) => {
       {props.members.length < 1 ? <p>Loading... </p> :
       <ListGroup>
         {props.members.map((member, i) => <ListGroupItem key={i}>{member.name.first} {member.name.last}
-      <Button view edit/>
         </ListGroupItem>)}
       </ListGroup>
     }
