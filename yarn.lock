@@ -3775,6 +3775,10 @@ lodash.defaults@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
 
+lodash.isequal@^4.0.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+
 lodash.isfunction@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.8.tgz#4db709fc81bc4a8fd7127a458a5346c5cdce2c6b"
@@ -4921,6 +4925,12 @@ react-dom@^15.5.4:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
+react-draggable@^2.1.1, react-draggable@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-2.2.6.tgz#3a806e10f2da6babfea4136be6510e89b0d76901"
+  dependencies:
+    classnames "^2.2.5"
+
 react-error-overlay@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-1.0.7.tgz#8712fe40cfc194ce992a4136c091c03bfada9148"
@@ -4931,6 +4941,16 @@ react-error-overlay@^1.0.7:
     react-dev-utils "^3.0.0"
     settle-promise "1.0.0"
     source-map "0.5.6"
+
+react-grid-layout@^0.14.6:
+  version "0.14.6"
+  resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.14.6.tgz#855e83297b0179f1a13b4ea3d4949420cacad735"
+  dependencies:
+    classnames "^2.2.5"
+    lodash.isequal "^4.0.0"
+    prop-types "^15.5.8"
+    react-draggable "^2.1.1"
+    react-resizable "^1.4.0"
 
 react-icon-base@2.0.7:
   version "2.0.7"
@@ -4968,6 +4988,13 @@ react-prop-types@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
   dependencies:
     warning "^3.0.0"
+
+react-resizable@^1.4.0:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-resizable/-/react-resizable-1.7.1.tgz#e8fd2c2247c9299d117fb245dbeed9c68c0e004c"
+  dependencies:
+    prop-types "^15.5.8"
+    react-draggable "^2.2.6"
 
 react-router-dom@^4.1.1:
   version "4.1.1"

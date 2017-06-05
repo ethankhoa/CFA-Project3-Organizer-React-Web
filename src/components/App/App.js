@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import NavMain from '../Nav/NavMain';
 import NavLeft from '../Nav/NavLeft';
 import Main from '../Main/Main';
@@ -17,14 +17,12 @@ class App extends Component {
     return (
       <div>
         <NavMain />
-        <Grid fluid>
           <Col xs={6} md={2}>
             <NavLeft />
           </Col>
           <Col xs={12} md={10}>
             <Main />
           </Col>
-        </Grid>
       </div>
 
 

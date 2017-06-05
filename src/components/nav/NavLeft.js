@@ -28,7 +28,7 @@ class NavLeft extends Component {
   render() {
     return (
       <div style={{background: '#232a2f', color: '#FFF', width: 220}}>
-        <SideNav default='dashboard' highlightBgColor='gray' highlightColor='white'>
+        <SideNav highlightBgColor='gray' highlightColor='white'>
           <Nav id='dashboard'>
             <NavIcon><FaDashboard size={20} /></NavIcon>
 

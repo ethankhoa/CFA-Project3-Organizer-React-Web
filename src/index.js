@@ -7,6 +7,8 @@ import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 // import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
+import '../node_modules/react-grid-layout/css/styles.css';
+import '../node_modules/react-resizable/css/styles.css';
 
 ReactDOM.render((
   <BrowserRouter>
