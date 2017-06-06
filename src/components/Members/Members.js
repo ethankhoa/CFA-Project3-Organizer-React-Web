@@ -39,8 +39,6 @@ class Members extends Component {
         //
         console.log("members" + this.state.members);
         console.log(JSON.stringify(this.state.members));
-
-
       })
       .catch((error) => {
         console.log(error);

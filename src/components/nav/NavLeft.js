@@ -37,6 +37,10 @@ class NavLeft extends Component {
           <Nav id='members'>
             <NavIcon><FaUsers size={20}/></NavIcon>
             <NavText> Members </NavText>
+            {/* <Nav id='viewmembers'>
+              <NavIcon><FaUserPlus size={20}/></NavIcon>
+              <NavText> View Members </NavText>
+            </Nav> */}
             <Nav id='addmember'>
               <NavIcon><FaUserPlus size={20}/></NavIcon>
               <NavText> Add Member </NavText>
