@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from "react-jsonschema-form";
-import { Col } from 'react-bootstrap';
+import { Col, Well } from 'react-bootstrap';
 
 
 
@@ -116,13 +116,13 @@ class AddMember extends Component {
     return(
       <Col>
         <h3>Add New Member</h3>
-
-
-      <Form schema={schema}
-        uiSchema={uiSchema}
-        onChange={log("changed")}
-        onSubmit={log("submitted")}
-        onError={log("errors")} />
+        <Well>
+        <Form schema={schema}
+          uiSchema={uiSchema}
+          onChange={log("changed")}
+          onSubmit={log("submitted")}
+          onError={log("errors")} />
+        </Well>
       </Col>
 
 

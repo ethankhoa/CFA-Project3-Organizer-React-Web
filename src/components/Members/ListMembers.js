@@ -11,13 +11,13 @@ const ListMembers = (props) => {
       <h4>Members List</h4>
       {props.members.length < 1 ? <p>Loading... </p> :
       <ListGroup>
-        {props.members.map((member, i) => <ListGroupItem key={i}>{member.name.first} {member.name.last} {member._id}
+        {props.members.map((member, i) => <ListGroupItem key={i}>{member.name.first} {member.name.last}
 
           <Link to={{ pathname: `/members/${member._id}` }}>
-            <Button bsStyle="info" bsSize="small" >Edit</Button>
+            <Button bsStyle="info" bsSize="small" className="pull-right">Edit</Button>
           </Link>
           <Link to={{ pathname: `/members/${member._id}` }}>
-            <Button bsStyle="success" bsSize="small" >View</Button>
+            <Button bsStyle="success" bsSize="small" className="pull-right">View</Button>
           </Link>
           <Route key={i} path={`members/${member._id}`} render={() => (
           <ViewMember />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Col } from 'react-bootstrap';
+import { Col, Well } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ListMembers from './ListMembers';
@@ -52,9 +52,17 @@ render() {
         <Route path='/members/addmember' component={AddMember}/>
       </Switch> */}
       <h3>Members Portal</h3>
-        <Col>
-        <ListMembers members={this.state.members} />
+        <Col xs={6} md={6}>
+        <Well>
+          <ListMembers members={this.state.members} />
+        </Well>
       </Col>
+      <Col xs={6} md={6}>
+      <Well>
+        <h4>Search</h4>
+
+      </Well>
+    </Col>
     </div>
   )
 };
