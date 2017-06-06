@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 // import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Switch, Route } from 'react-router-dom';
+import KioskMode from '../Members/KioskMode';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import FaRocket from 'react-icons/lib/fa/rocket';
+import { Link } from 'react-router-dom';
+
 
 class NavMain extends Component {
   constructor(props) {
@@ -33,7 +37,9 @@ class NavMain extends Component {
         {/* <NavItem eventKey={2} href="#">Link</NavItem> */}
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="/">Hi Logged In User</NavItem>
+        <NavItem eventKey={1} >Hi Logged In User</NavItem>
+        <NavItem eventKey={1}><Link to={`/kiosk`}>Go Kiosk Mode</Link></NavItem>
+
         <NavDropdown eventKey={3} title="Do Stuff" id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>
           <MenuItem eventKey={3.2}>Another action</MenuItem>

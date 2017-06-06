@@ -4,6 +4,8 @@ import Dashboard from '../Dashboard/Dashboard';
 import Members from '../Members/Members';
 import Calendar from '../Calendar/Calendar';
 import AddMember from '../Members/AddMember';
+import KioskMode from '../Members/KioskMode';
+
 
 
 class Main extends Component {
@@ -19,6 +21,7 @@ render() {
   return (
     <div>
       <Switch>
+        <Route exact path='/kiosk' component={KioskMode}/>
         <Route exact path='/dashboard' component={Dashboard}/>
         <Route exact path='/members' component={Members}/>
         <Route exact path='/members/addmember' component={AddMember}/>
