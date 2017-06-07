@@ -20,6 +20,7 @@ class ViewMember extends Component {
     this.closeDeleteConfirmModal = this.closeDeleteConfirmModal.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.editMemberSubmit = this.editMemberSubmit.bind(this);
+    this.deleteMember = this.deleteMember.bind(this);
 
 
   }
@@ -44,6 +45,17 @@ class ViewMember extends Component {
   componentDidMount() {
     console.log('componentWillMount');
     this.getMember();
+  };
+
+  deleteMember() {
+    const URL = `http://localhost:3000/members/${this.props.match.params.id}`
+    Axios.delete(URL)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   getMember() {

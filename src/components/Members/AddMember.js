@@ -1,129 +1,255 @@
 import React, { Component } from 'react';
-import Form from "react-jsonschema-form";
-import { Col, Well } from 'react-bootstrap';
-
+import Axios from 'axios';
+import { Col, Well, Tabs, Tab, Panel, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, ControlLabel, Checkbox } from 'react-bootstrap';
+import { Redirect } from 'react-router';
 
 
 class AddMember extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirect: false,
+      member: false
+    }
+    this.addMemberSubmit = this.addMemberSubmit.bind(this);
 
+  };
+
+  addMemberSubmit() {
+    const URL = `http://localhost:3000/members`
+    Axios.post(URL, {
+      "firstName": this.inputFirstName.value,
+      "lastName": this.inputLastName.value,
+      "email": this.inputEmail.value,
+      "phone": this.inputPhone.value,
+      "emailOptIn": this.inputEmailOptIn.checked,
+      "isMember": this.inputIsMember.checked,
+      "street": this.inputStreetAddress.value,
+      "state": this.inputStateAddress.value,
+      "postCode": this.inputPostCodeAddress.value,
+      "city": this.inputCityAddress.value,
+      "day": this.inputDayBirthday.value,
+      "month": this.inputMonthBirtday.value,
+      "year": this.inputYearBirthday.value
+    })
+    .then((response) => {
+      console.log(response.data.message);
+      alert(`${response.data.message}`);
+      this.setState({
+        redirect: true,
+        member: response.data
+      })
+      console.log()
+    })
+    .catch(function(error) {
+      console.log(error)
+    });
+  };
 
   render() {
+    const panelFooter = (
+      <div>
+        <Button href='/members'>Cancel</Button>
+        {` `}
+        <Button bsStyle="success" onClick={this.addMemberSubmit}>Add Member</Button>
+      </div>
+    );
 
-    const schema = {
-  "definitions": {
-    "name": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "first": {
-          "type": "string"
-        },
-        "last": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "first",
-        "last"
-      ]
-    },
-    "alt-date": {
-      "type": "string",
-      "format": "date"
-},
-    "address": {
-      "type": "object",
-      "properties": {
-        "street": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string"
-        },
-        "postcode": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "address",
-        "city",
-        "state",
-        "postcode"
-      ]
-    },
-    email: {
-      "type": "string"
-    },
-    "node": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "children": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/node"
-          }
-        }
-      }
-    }
-  },
-  "type": "object",
-  "properties": {
-    "name": {
-      "title": "Name",
-      "$ref": "#/definitions/name"
-    },
-    "birthday": {
-      "title": "Birthday",
-      "$ref": "#/definitions/alt-date"
-    },
-    "email": {
-      "title": "Email",
-      "$ref": "#/definitions/email"
-    },
-    "address": {
-      "title": "Address",
-      "$ref": "#/definitions/address"
-    },
-    "tree": {
-      "title": "Recursive references",
-      "$ref": "#/definitions/node"
-    }
-  }
-};
+    const panelHeader = (
+      <h3>Add New Member</h3>
 
-  const uiSchema = {
-  "ui:order": [
-    "name",
-    "email",
-    "birthday",
-    "address",
-    "tree"
-  ],
-  "alt-date": {
-    "ui:widget": "alt-datetime"
-  }
-}
-    const log = (type) => console.log.bind(console, type);
+    );
+    // const { member } = this.state;
+    //
+    //  if (member._id) {
+    //    return <Redirect to={`members/${member._id}`}/>;
+    //  }
+
 
     return(
-      <Col>
-        <h3>Add New Member</h3>
-        <Well>
-        <Form schema={schema}
-          uiSchema={uiSchema}
-          onChange={log("changed")}
-          onSubmit={log("submitted")}
-          onError={log("errors")} />
-        </Well>
-      </Col>
+  <Panel footer={panelFooter} bsStyle="primary" header={panelHeader}>
+    <p>* is required</p>
+
+    <Tabs defaultActiveKey={1} id="edit-user-modal">
+
+
+      <Tab eventKey={1} title="General">
+
+        <Form>
+          <br/>
+          <FormGroup controlId="formHorizontalFirst">
+            <Col componentClass={ControlLabel}>
+              First Name*
+            </Col>
+            <Col >
+              <FormControl
+                type="text"
+                placeholder="John"
+                inputRef={ref => { this.inputFirstName = ref; }}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup controlId="formHorizontalLast">
+            <Col componentClass={ControlLabel}>
+              Last Name*
+            </Col>
+            <Col >
+              <FormControl
+                type="text"
+                name="lastName"
+                placeholder="Smith"
+                onChange={this.handleInputChange}
+                inputRef={ref => { this.inputLastName = ref; }}
+              />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalEmail">
+            <Col componentClass={ControlLabel}>
+              Email*
+            </Col>
+            <Col >
+              <FormControl
+                type="email"
+                placeholder="Email"
+                inputRef={ref => { this.inputEmail = ref; }}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup controlId="formHorizontalPhone">
+            <Col componentClass={ControlLabel}>
+              Phone
+            </Col>
+            <Col >
+              <FormControl
+                type="phone"
+                placeholder="Phone"
+                inputRef={ref => { this.inputPhone = ref; }}
+              />
+            </Col>
+          </FormGroup>
+        </Form>
+        <b>Birthday</b>
+      <br/>
+        <Form inline>
+          <FormGroup controlId="formInlineDay">
+                <ControlLabel>Day</ControlLabel>
+                {' '}
+                <FormControl
+                  inputRef={ref => { this.inputDayBirthday = ref; }}
+                  type="number"
+                  min="1"
+                  max="31"
+                />
+              </FormGroup>
+              {' '}
+              <FormGroup controlId="formInlineMonth">
+                <ControlLabel>Month</ControlLabel>
+                {' '}
+                <FormControl
+                  inputRef={ref => { this.inputMonthBirtday = ref; }}
+                  type="number"
+                  min="1"
+                  max="12"
+                />
+              </FormGroup>
+              {' '}
+              <FormGroup controlId="formInlineYear">
+                <ControlLabel>Year</ControlLabel>
+                {' '}
+                <FormControl
+                  inputRef={ref => { this.inputYearBirthday = ref; }}
+                  type="number"
+                  min="1900"
+                  max="2017"/>
+              </FormGroup>
+        </Form>
+
+
+      </Tab>
+      <Tab eventKey={2} title="Address">
+
+        <Form>
+          <br/>
+          <FormGroup controlId="formHorizontalStreet">
+            <Col componentClass={ControlLabel}>
+              Street Address
+            </Col>
+            <Col >
+              <FormControl
+                type="text"
+                placeholder="123 Happy St"
+                inputRef={ref => { this.inputStreetAddress = ref; }}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup controlId="formHorizontalCity">
+            <Col componentClass={ControlLabel}>
+              City
+            </Col>
+            <Col >
+              <FormControl
+                type="city"
+                placeholder="Sydney"
+                inputRef={ref => { this.inputCityAddress = ref; }}
+              />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalState">
+            <Col componentClass={ControlLabel}>
+              State
+            </Col>
+            <Col >
+              <FormControl
+                type="state"
+                placeholder="NSW"
+                inputRef={ref => { this.inputStateAddress = ref; }}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup controlId="formHorizontalPostCode">
+            <Col componentClass={ControlLabel}>
+              Post Code
+            </Col>
+            <Col >
+              <FormControl
+                type="postCode"
+                placeholder="2060"
+                inputRef={ref => { this.inputPostCodeAddress = ref; }}
+              />
+            </Col>
+          </FormGroup>
+
+        </Form>
+
+      </Tab>
+      <Tab eventKey={3} title="Settings">
+        <Form>
+          <br/>
+          Is the member currently subscribed to the weekly newsletter?
+          <Checkbox
+            inputRef={ref => { this.inputEmailOptIn = ref; }}>
+            This Week at Chatswood Subscription
+          </Checkbox>
+          <br/>
+
+          Is the member an official member of Chatswood?
+          <Checkbox
+            inputRef={ref => { this.inputIsMember = ref; }} >
+            Chatswood Church Membership
+          </Checkbox>
+
+        </Form>
+      </Tab>
+
+    </Tabs>
+
+    <br/>
+
+
+    </Panel>
 
 
     )
