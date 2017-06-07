@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Well } from 'react-bootstrap';
+import { Col, Panel } from 'react-bootstrap';
 import ResponsiveReactGridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -23,9 +23,9 @@ render() {
   return (
 
     <ResponsiveReactGridLayout className="layout" layout={layout} cols={10} rowHeight={30} width={1200}>
-      <Well key={'a'}><h4>Upcoming birthdays</h4></Well>
-      <Well key={'b'}><h4>Upcoming Roster</h4></Well>
-      <Well key={'c'}><h4>Upcoming Events</h4></Well>
+      <Panel key={'a'}><h4>Upcoming birthdays</h4></Panel>
+      <Panel key={'b'}><h4>Upcoming Roster</h4></Panel>
+      <Panel key={'c'}><h4>Upcoming Events</h4></Panel>
     </ResponsiveReactGridLayout>
   )
 };

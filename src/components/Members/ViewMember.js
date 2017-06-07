@@ -10,22 +10,35 @@ class ViewMember extends Component {
     super(props);
     this.state = {
       member: false,
-      showModal: false
+      showEditModal: false,
+      showDeleteConfirmModal: false
     };
     this.getMember = this.getMember.bind(this);
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
+    this.openEditModal = this.openEditModal.bind(this);
+    this.closeEditModal = this.closeEditModal.bind(this);
+    this.openDeleteConfirmModal = this.openDeleteConfirmModal.bind(this);
+    this.closeDeleteConfirmModal = this.closeDeleteConfirmModal.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.editMemberSubmit = this.editMemberSubmit.bind(this);
+
 
   }
 
-  open() {
-  this.setState({ showModal: true });
+  openDeleteConfirmModal() {
+    this.setState({ showDeleteConfirmModal: true })
+  }
+
+  closeDeleteConfirmModal() {
+    this.setState({ showDeleteConfirmModal: false })
+  }
+
+  openEditModal() {
+  this.setState({ showEditModal: true });
   console.log("member" + this.state.member);
-
   }
 
-  close() {
-  this.setState({ showModal: false });
+  closeEditModal() {
+  this.setState({ showEditModal: false });
   }
 
   componentDidMount() {
@@ -49,61 +62,108 @@ class ViewMember extends Component {
       });
   };
 
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    }, () => {
+      console.log("New state in ASYNC callback:", this.state.isMember);
+    });
+    console.log("testing member id", this.state.member._id)
+
+  }
+
+  editMemberSubmit() {
+     const URL = `http://localhost:3000/members/${this.state.member._id}/edit`
+     Axios.post(URL, {
+       "email": this.inputEmail.value,
+      //  "title": this.inputTitleName.value,
+       "name.first": this.inputFirstName.value,
+       "name.last": this.inputLastName.value,
+       "phone": this.inputPhone.value,
+       "emailOptIn": this.inputEmailOptIn.checked,
+       "isMember": this.inputIsMember.checked,
+       "address.street": this.inputStreetAddress.value,
+       "address.state": this.inputStateAddress.value,
+       "address.postCode": this.inputPostCodeAddress.value,
+       "address.city": this.inputCityAddress.value,
+       "birthday.day": this.inputDayBirthday.value,
+       "birthday.month": this.inputMonthBirtday.value,
+       "birthday.year": this.inputYearBirthday.value
+   })
+    .then((response) => {
+      console.log(response.data.message);
+      alert(`${response.data.message}`);
+      this.closeEditModal();
+      this.getMember();
+
+      // reset value of input field
+      // this.nameInput.value = '';
+      // this.props.getIngredientList();
+    })
+    .catch(function(error) {
+      console.log(error)
+    });
+ };
+
   render(){
     return (
       <div>
         {this.state.member ? (
           <div>
           <Well>
-            <h4>Name </h4>
+            <p>Name </p>
               <p>
                 {this.state.member.name.title}
                 {this.state.member.name.first} {this.state.member.name.last}
               </p>
-            <h4>Email </h4>
+            <p>Email </p>
               <p><a href={`mailto:${this.state.member.email}?Subject=Hello%20again`} target="_top">{this.state.member.email}</a></p>
 
-            <h4>Address</h4>
+            <p>Address</p>
             {this.state.member.address.street ? (
               <p>
                 <p>{this.state.member.address.street}</p>
                 <p>
                   {this.state.member.address.city} {this.state.member.address.state}
-                  {this.state.member.address.postCode}
+                  <p>{this.state.member.address.postCode}</p>
                 </p>
               </p>
             ) : (
               <p><i>There is no address saved for this member.</i></p>
             )}
 
-            <h4>Phone</h4>
+            <p>Phone</p>
             {this.state.member.phone ? (
               <p>{this.state.member.phone}</p>
             ) : (
               <p><i>There is no phone number saved for this member.</i></p>
             )}
 
-            <h4>Birthday</h4>
+            <p>Birthday</p>
             {this.state.member.birthday.day ? (
               <p>{this.state.member.birthday.day}/{this.state.member.birthday.day}</p>
             ) : (
               <p><i>There is no birthday saved for this member.</i></p>
             )}
 
-            <h4>Newsletter</h4>
+            <p>Newsletter</p>
               <p>{this.state.member.emailOptIn.toString()}</p>
 
-            <h4>Church Member</h4>
+            <p>Church Member</p>
               <p>{this.state.member.isMember.toString()}</p>
 
 
 
 
-          <Button bsStyle="info" onClick={this.open}>Edit User</Button> <Button bsStyle="danger">Delete</Button>
+          <Button bsStyle="info" onClick={this.openEditModal}>Edit User</Button> <Button bsStyle="danger" onClick={this.openDeleteConfirmModal}>Delete</Button>
           </Well>
 
 
-        <Modal show={this.state.showModal} onHide={this.close}>
+        <Modal show={this.state.showEditModal} onHide={this.closeEditModal}>
           <Modal.Header closeButton>
             <Modal.Title>Edit User Details</Modal.Title>
           </Modal.Header>
@@ -120,8 +180,12 @@ class ViewMember extends Component {
                       First Name
                     </Col>
                     <Col >
-                      <FormControl type="text"             defaultValue={this.state.member.name.first}
-                      placeholder="John" />
+                      <FormControl
+                        type="text"
+                        defaultValue={this.state.member.name.first}
+                        placeholder="John"
+                        inputRef={ref => { this.inputFirstName = ref; }}
+                      />
                     </Col>
                   </FormGroup>
                   <FormGroup controlId="formHorizontalLast">
@@ -129,7 +193,14 @@ class ViewMember extends Component {
                       Last Name
                     </Col>
                     <Col >
-                      <FormControl type="lastName" defaultValue={this.state.member.name.last} placeholder="Smith" />
+                      <FormControl
+                        type="text"
+                        name="lastName"
+                        defaultValue={this.state.member.name.last}
+                        placeholder="Smith"
+                        onChange={this.handleInputChange}
+                        inputRef={ref => { this.inputLastName = ref; }}
+                      />
                     </Col>
                   </FormGroup>
 
@@ -138,7 +209,12 @@ class ViewMember extends Component {
                       Email
                     </Col>
                     <Col >
-                      <FormControl type="email" defaultValue={this.state.member.email} placeholder="Email" />
+                      <FormControl
+                        type="email"
+                        defaultValue={this.state.member.email}
+                        placeholder="Email"
+                        inputRef={ref => { this.inputEmail = ref; }}
+                      />
                     </Col>
                   </FormGroup>
                   <FormGroup controlId="formHorizontalPhone">
@@ -146,7 +222,12 @@ class ViewMember extends Component {
                       Phone
                     </Col>
                     <Col >
-                      <FormControl type="phone" defaultValue={this.state.member.phone} placeholder="Phone" />
+                      <FormControl
+                        type="phone"
+                        defaultValue={this.state.member.phone}
+                        placeholder="Phone"
+                        inputRef={ref => { this.inputPhone = ref; }}
+                      />
                     </Col>
                   </FormGroup>
                 </Form>
@@ -156,19 +237,33 @@ class ViewMember extends Component {
                   <FormGroup controlId="formInlineDay">
                         <ControlLabel>Day</ControlLabel>
                         {' '}
-                        <FormControl type="number" min="1" max="31" />
+                        <FormControl
+                          inputRef={ref => { this.inputDayBirthday = ref; }}
+                          type="number"
+                          min="1"
+                          max="31"
+                        />
                       </FormGroup>
                       {' '}
                       <FormGroup controlId="formInlineMonth">
                         <ControlLabel>Month</ControlLabel>
                         {' '}
-                        <FormControl type="number" min="1" max="12"/>
+                        <FormControl
+                          inputRef={ref => { this.inputMonthBirtday = ref; }}
+                          type="number"
+                          min="1"
+                          max="12"
+                        />
                       </FormGroup>
                       {' '}
                       <FormGroup controlId="formInlineYear">
                         <ControlLabel>Year</ControlLabel>
                         {' '}
-                        <FormControl type="number" min="1900" max="2017"/>
+                        <FormControl
+                          inputRef={ref => { this.inputYearBirthday = ref; }}
+                          type="number"
+                          min="1900"
+                          max="2017"/>
                       </FormGroup>
                 </Form>
 
@@ -190,7 +285,9 @@ class ViewMember extends Component {
                       <FormControl
                         type="text"
                         defaultValue={this.state.member.address.street}
-                        placeholder="123 Happy St" />
+                        placeholder="123 Happy St"
+                        inputRef={ref => { this.inputStreetAddress = ref; }}
+                      />
                     </Col>
                   </FormGroup>
                   <FormGroup controlId="formHorizontalCity">
@@ -198,7 +295,12 @@ class ViewMember extends Component {
                       City
                     </Col>
                     <Col >
-                      <FormControl type="city" placeholder="Sydney" />
+                      <FormControl
+                        type="city"
+                        placeholder="Sydney"
+                        defaultValue={this.state.member.address.city}
+                        inputRef={ref => { this.inputCityAddress = ref; }}
+                      />
                     </Col>
                   </FormGroup>
 
@@ -207,7 +309,12 @@ class ViewMember extends Component {
                       State
                     </Col>
                     <Col >
-                      <FormControl type="state" placeholder="NSW" />
+                      <FormControl
+                        type="state"
+                        placeholder="NSW"
+                        defaultValue={this.state.member.address.state}
+                        inputRef={ref => { this.inputStateAddress = ref; }}
+                      />
                     </Col>
                   </FormGroup>
                   <FormGroup controlId="formHorizontalPostCode">
@@ -215,7 +322,12 @@ class ViewMember extends Component {
                       Post Code
                     </Col>
                     <Col >
-                      <FormControl type="postCode" placeholder="2060" />
+                      <FormControl
+                        type="postCode"
+                        placeholder="2060"
+                        inputRef={ref => { this.inputPostCodeAddress = ref; }}
+                        defaultValue={this.state.member.address.postCode}
+                      />
                     </Col>
                   </FormGroup>
 
@@ -228,13 +340,17 @@ class ViewMember extends Component {
                 <Form>
                   <br/>
                   Is the member currently subscribed to the weekly newsletter?
-                  <Checkbox defaultChecked={this.state.member.emailOptIn}>
+                  <Checkbox
+                    defaultChecked={this.state.member.emailOptIn}
+                    inputRef={ref => { this.inputEmailOptIn = ref; }}>
                     This Week at Chatswood Subscription
                   </Checkbox>
                   <br/>
 
                   Is the member an official member of Chatswood?
-                  <Checkbox defaultChecked={this.state.member.isMember}>
+                  <Checkbox
+                    inputRef={ref => { this.inputIsMember = ref; }}
+                    defaultChecked={this.state.member.isMember}>
                     Chatswood Church Membership
                   </Checkbox>
 
@@ -247,10 +363,26 @@ class ViewMember extends Component {
 
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>Cancel</Button>
-            <Button bsStyle="success">Submit</Button>
+            <Button onClick={this.closeEditModal}>Cancel</Button>
+            <Button bsStyle="success" onClick={this.editMemberSubmit}>Submit</Button>
           </Modal.Footer>
         </Modal>
+
+
+        <Modal show={this.state.showDeleteConfirmModal} onHide={this.closeDeleteConfirmModal}>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-sm">Delete Member</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>{this.state.member.name.first} {this.state.member.name.last}</h4>
+          <br/>
+          <h5>Are you sure you want to delete this member? This can not be undone.</h5>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.closeDeleteConfirmModal}>Cancel</Button>
+          <Button bsStyle="danger" onClick={this.closeDeleteConfirmModal}>Confirm Delete</Button>
+        </Modal.Footer>
+      </Modal>
         </div>
       ) : (
         'Loading man1!!!!!!!!!...'

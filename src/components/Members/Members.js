@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Col, Well } from 'react-bootstrap';
+import { Col, Well, Panel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ListMembers from './ListMembers';
