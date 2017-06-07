@@ -20,6 +20,8 @@ class ViewMember extends Component {
 
   open() {
   this.setState({ showModal: true });
+  console.log("member" + this.state.member);
+
   }
 
   close() {
@@ -51,6 +53,7 @@ class ViewMember extends Component {
     return (
       <div>
         {this.state.member ? (
+          <div>
           <Well>
             <h4>Name </h4>
               <p>
@@ -61,7 +64,7 @@ class ViewMember extends Component {
               <p><a href={`mailto:${this.state.member.email}?Subject=Hello%20again`} target="_top">{this.state.member.email}</a></p>
 
             <h4>Address</h4>
-            {this.state.member.address ? (
+            {this.state.member.address.street ? (
               <p>
                 <p>{this.state.member.address.street}</p>
                 <p>
@@ -81,7 +84,7 @@ class ViewMember extends Component {
             )}
 
             <h4>Birthday</h4>
-            {this.state.member.birthday ? (
+            {this.state.member.birthday.day ? (
               <p>{this.state.member.birthday.day}/{this.state.member.birthday.day}</p>
             ) : (
               <p><i>There is no birthday saved for this member.</i></p>
@@ -98,9 +101,7 @@ class ViewMember extends Component {
 
           <Button bsStyle="info" onClick={this.open}>Edit User</Button> <Button bsStyle="danger">Delete</Button>
           </Well>
-        ) : (
-          'Loading man1!!!!!!!!!...'
-        )}
+
 
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
@@ -186,7 +187,10 @@ class ViewMember extends Component {
                       Street Address
                     </Col>
                     <Col >
-                      <FormControl type="text" defaultValue={this.state.member.email} placeholder="123 Happy St" />
+                      <FormControl
+                        type="text"
+                        defaultValue={this.state.member.address.street}
+                        placeholder="123 Happy St" />
                     </Col>
                   </FormGroup>
                   <FormGroup controlId="formHorizontalCity">
@@ -224,13 +228,13 @@ class ViewMember extends Component {
                 <Form>
                   <br/>
                   Is the member currently subscribed to the weekly newsletter?
-                  <Checkbox>
+                  <Checkbox defaultChecked={this.state.member.emailOptIn}>
                     This Week at Chatswood Subscription
                   </Checkbox>
                   <br/>
 
                   Is the member an official member of Chatswood?
-                  <Checkbox>
+                  <Checkbox defaultChecked={this.state.member.isMember}>
                     Chatswood Church Membership
                   </Checkbox>
 
@@ -247,7 +251,10 @@ class ViewMember extends Component {
             <Button bsStyle="success">Submit</Button>
           </Modal.Footer>
         </Modal>
-
+        </div>
+      ) : (
+        'Loading man1!!!!!!!!!...'
+      )}
 
       </div>
 
