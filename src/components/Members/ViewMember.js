@@ -376,7 +376,7 @@ class ViewMember extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.closeEditModal}>Cancel</Button>
-            <Button bsStyle="success" onClick={this.editMemberSubmit}>Submit</Button>
+            <Button bsStyle="success" onClick={this.editMemberSubmit}>Save</Button>
           </Modal.Footer>
         </Modal>
 
