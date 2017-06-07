@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FaUsers from 'react-icons/lib/fa/group';
-import FaCalendar from 'react-icons/lib/fa/calendar';
+import FaBullhorn from 'react-icons/lib/fa/bullhorn';
 import FaDashboard from 'react-icons/lib/fa/dashboard';
 import FaUserPlus from 'react-icons/lib/fa/user-plus';
 
@@ -47,8 +47,8 @@ class NavLeft extends Component {
             </Nav>
           </Nav>
           <Nav id='calendar'>
-            <NavIcon><FaCalendar size={20} /></NavIcon>
-              <NavText>  Calendar </NavText>
+            <NavIcon><FaBullhorn size={20} /></NavIcon>
+              <NavText>  Announcements </NavText>
           </Nav>
         </SideNav>
       </div>

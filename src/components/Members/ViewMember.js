@@ -52,6 +52,8 @@ class ViewMember extends Component {
     Axios.delete(URL)
       .then((response) => {
         console.log(response.data);
+        this.closeDeleteConfirmModal();
+        alert(`${response.data.message}`);
       })
       .catch((error) => {
         console.log(error);
@@ -392,7 +394,7 @@ class ViewMember extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.closeDeleteConfirmModal}>Cancel</Button>
-          <Button bsStyle="danger" onClick={this.closeDeleteConfirmModal}>Confirm Delete</Button>
+          <Button bsStyle="danger" onClick={this.deleteMember}>Confirm Delete</Button>
         </Modal.Footer>
       </Modal>
         </div>
