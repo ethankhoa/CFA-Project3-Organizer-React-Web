@@ -11,9 +11,10 @@ import {
   Modal
 }
 from 'react-bootstrap';
-import { Route } from 'react-router-dom';
-import Email from 'react-email-autocomplete';
+// import { Route } from 'react-router-dom';
+// import Email from 'react-email-autocomplete';
 import Axios from 'axios';
+import Loadable from 'react-loading-overlay';
 
 class KioskMode extends Component {
   constructor(props) {
@@ -96,13 +97,9 @@ class KioskMode extends Component {
 
   render() {
 
-    const panelTitle = (
-      <h4>SIGN UP FOR SHIT</h4>
-    )
-
     const panelFooter = (
       <div>
-      <Button bsSize="large" onClick={this.resetState}>Cancel this shit man!</Button>
+      <Button bsSize="large" onClick={this.resetState}>Cancel </Button>
       {` `}
       <Button bsSize="large" bsStyle="success" onClick={this.addMemberSubmit}>Send it dude!</Button>
       </div>
@@ -113,13 +110,18 @@ class KioskMode extends Component {
     return (
       <div>
         <Grid>
+        <Loadable
+          active={false}
+          spinner
+          text='Loading your content...'
+          >
         <h2>KIOSK MODE!!!!!!!</h2>
-        <p>fuck no buttons please shit</p>
+        <p>Fill out your info below to sign up for the weekly newsletter.</p>
         <Button href="/app/dashboard">Exit Kiosk Mode
         </Button>
         {` `}
 
-        <h3>SIGN UP FOR SHIT</h3>
+        <h3>SIGN UP</h3>
 
         <Panel bsStyle="info" footer={panelFooter}>
         {` `}
@@ -176,12 +178,13 @@ class KioskMode extends Component {
             checked={this.state.emailOptIn}
             name="emailOptIn"
             onChange={this.handleInputChange} >
-            Do you want to sign up for this shit or not?????
+            I would like to receive the weekly Chatswood newsletter and receive periodic updates from Chatswood.
           </Checkbox>
 
 
         </Form>
         </Panel>
+      </Loadable>
         </Grid>
 
         <Modal bsSize="small" show={this.state.successModal} onHide={this.closeSuccessModal}>
@@ -189,7 +192,6 @@ class KioskMode extends Component {
             <Modal.Title id="contained-modal-title-sm">Success!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Success!</h4>
             <h4>You've signed up successfully.</h4>
 
             {/* <h4>{this.state.responseDataMessage}</h4> */}

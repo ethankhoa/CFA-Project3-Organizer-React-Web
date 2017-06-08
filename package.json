@@ -15,6 +15,7 @@
     "react-email-autocomplete": "^1.0.2",
     "react-grid-layout": "^0.14.6",
     "react-icons": "^2.2.5",
+    "react-loading-overlay": "^0.2.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-sidenav": "^2.1.1",
