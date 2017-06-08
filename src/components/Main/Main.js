@@ -7,11 +7,6 @@ import AddMember from '../Members/AddMember';
 import KioskMode from '../Members/KioskMode';
 import ViewMember from '../Members/ViewMember';
 
-// import ListMembers from '../Members/ListMembers';
-
-
-
-
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -20,24 +15,23 @@ class Main extends Component {
     };
   }
 
+  render(){
+    return (
+      <div>
+        <Switch>
+          <Route exact path='/kiosk' component={KioskMode}/>
+          <Route exact path='/dashboard' component={Dashboard}/>
+          <Route exact path='/members' component={Members}/>
+          {/* <Route exact path='/members/viewmembers' component={ListMembers}/> */}
+          <Route exact path='/members/addmember' component={AddMember}/>
+          <Route exact path='/members/:id' component={ViewMember}/>
 
-render() {
-  return (
-    <div>
-      <Switch>
-        <Route exact path='/kiosk' component={KioskMode}/>
-        <Route exact path='/dashboard' component={Dashboard}/>
-        <Route exact path='/members' component={Members}/>
-        {/* <Route exact path='/members/viewmembers' component={ListMembers}/> */}
-        <Route exact path='/members/addmember' component={AddMember}/>
-        <Route exact path='/members/:id' component={ViewMember}/>
+          <Route path='/calendar' component={Calendar}/>
+        </Switch>
+      </div>
+    )
+  };
 
-        <Route path='/calendar' component={Calendar}/>
-      </Switch>
-
-    </div>
-  )
-};
 }
 
 export default Main;

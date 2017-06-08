@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { Switch, Route } from 'react-router-dom';
-import KioskMode from '../Members/KioskMode';
+// import KioskMode from '../Members/KioskMode';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import FaRocket from 'react-icons/lib/fa/rocket';
 import { Link } from 'react-router-dom';
@@ -22,12 +21,12 @@ class NavMain extends Component {
   render() {
     return (
       <div>
-        <Navbar inverse collapseOnSelect>
+  <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">
+        <Link to={`/dashboard`}>
           <FaRocket size={24}/>
-        </a>
+        </Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -38,7 +37,9 @@ class NavMain extends Component {
       </Nav>
       <Nav pullRight>
         <NavItem eventKey={1} >Hi Logged In User</NavItem>
-        <NavItem eventKey={1}><Link to={`/kiosk`}>Go Kiosk Mode</Link></NavItem>
+        <NavItem eventKey={1} href="/kiosk">
+        Go Kiosk Mode
+        </NavItem>
 
         <NavDropdown eventKey={3} title="Do Stuff" id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>

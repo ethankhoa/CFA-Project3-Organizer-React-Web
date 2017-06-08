@@ -3,12 +3,9 @@ import FaUsers from 'react-icons/lib/fa/group';
 import FaBullhorn from 'react-icons/lib/fa/bullhorn';
 import FaDashboard from 'react-icons/lib/fa/dashboard';
 import FaUserPlus from 'react-icons/lib/fa/user-plus';
-
 import { withRR4, Nav, NavText, NavIcon } from 'react-sidenav';
-import { Link } from 'react-router-dom';
 
 const SideNav = withRR4();
-
 
 class NavLeft extends Component {
   constructor(props) {

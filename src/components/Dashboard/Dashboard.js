@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Panel } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 import ResponsiveReactGridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -16,7 +16,8 @@ class Dashboard extends Component {
 render() {
   let layout = [
     {i: 'a', x: 0, y: 0, w: 3, h: 10},
-    {i: 'b', x: 1, y: 0, w: 3, h: 10, minW: 5, maxW: 10},
+    // {i: 'b', x: 1, y: 0, w: 3, h: 10, minW: 5, maxW: 10},
+    {i: 'b', x: 1, y: 0, w: 3, h: 10},
     {i: 'c', x: 3, y: 0, w: 3, h: 10}
   ];
 

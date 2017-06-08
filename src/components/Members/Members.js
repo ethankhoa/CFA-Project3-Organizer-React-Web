@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Col, Well, Panel, Button } from 'react-bootstrap';
+import { Col, Well, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ListMembers from './ListMembers';
@@ -19,14 +18,13 @@ class Members extends Component {
 
   componentWillMount() {
     console.log('componentWillMount');
-    this.getMembers();
+    // this.getMembers();
 
   };
 
   componentDidMount() {
     console.log('componentDidMount');
-    // this.state.members(() => {});
-
+    this.getMembers();
 
   };
 
@@ -35,22 +33,19 @@ class Members extends Component {
     Axios.get(URL)
       .then((response) => {
         this.setState({ members: response.data });
-        console.log(response.data);
-        //
-        console.log("members" + this.state.members);
-        console.log(JSON.stringify(this.state.members));
+        // console.log(response.data);
+        // console.log("members" + this.state.members);
+        // console.log(JSON.stringify(this.state.members));
       })
       .catch((error) => {
         console.log(error);
       });
+
   };
 
 render() {
   return (
     <div>
-      {/* <Switch>
-        <Route path='/members/addmember' component={AddMember}/>
-      </Switch> */}
       <h3>Members Portal</h3>
         <Col xs={6} md={6}>
         <Well>
@@ -58,15 +53,15 @@ render() {
         </Well>
       </Col>
       <Col xs={6} md={6}>
-      <Well>
-        <h4>Search</h4>
-        <Button>Add New Member</Button>
-
-      </Well>
-    </Col>
+        <Well>
+          <h4>Search</h4>
+          <Button>Add New Member</Button>
+        </Well>
+      </Col>
     </div>
-  )
-};
+    )
+  };
+
 }
 
 Members.propTypes = {
