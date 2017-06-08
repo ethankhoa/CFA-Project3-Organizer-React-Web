@@ -7,11 +7,13 @@ import {
   FormControl,
   Checkbox,
   Panel,
-  ControlLabel
+  ControlLabel,
+  Modal
 }
 from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 import Email from 'react-email-autocomplete';
+import Axios from 'axios';
 
 class KioskMode extends Component {
   constructor(props) {
@@ -20,11 +22,20 @@ class KioskMode extends Component {
       firstName: false,
       lastName: false,
       email: false,
-      emailAddress: false,
       emailOptIn: true,
-      inputText: false
+      inputText: false,
+      successModal: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.resetState = this.resetState.bind(this);
+    this.showSuccessModal = this.showSuccessModal.bind(this);
+    this.closeSuccessModal = this.closeSuccessModal.bind(this);
+  }
+
+  resetState() {
+    this.inputFirstName.value = '';
+    this.inputLastName.value = '';
+    this.inputEmail.value = '';
   }
 
 
@@ -41,10 +52,40 @@ class KioskMode extends Component {
       [name]: value
       // [id]: value,
     }, () => {
-      console.log("New state in ASYNC callback:", this.state.firstName, this.state.lastName, this.state.email, this.state.emailAddress, this.state.emailOptIn);
+      console.log("New state in ASYNC callback:", this.state.firstName, this.state.lastName, this.state.email, this.state.emailOptIn);
     });
     console.log("testing checkbox", this.state.emailOptIn)
 
+  }
+
+  addMemberSubmit() {
+    const URL = `http://localhost:3000/members`
+    Axios.post(URL, {
+      "firstName": this.inputFirstName.value,
+      "lastName": this.inputLastName.value,
+      "email": this.inputEmail.value,
+      "emailOptIn": this.inputEmailOptIn.checked
+      // "isMember": this.inputIsMember.checked,
+    }).then((response) => {
+      console.log(response.data)
+      this.setState({
+        responseDataMessage: response.data.message
+      }, () => {
+        this.showSuccessModal(this.state);
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+  showSuccessModal() {
+    this.setState({successModal: true});
+    console.log('showsuccess', this.state.member);
+  }
+
+  closeSuccessModal() {
+    this.setState({successModal: false});
+    this.resetState();
   }
 
   render() {
@@ -57,7 +98,7 @@ class KioskMode extends Component {
       <div>
       <Button bsSize="large">Cancel this shit man!</Button>
       {` `}
-      <Button bsSize="large" bsStyle="success">Send it dude!</Button>
+      <Button bsSize="large" bsStyle="success" onClick={this.showSuccessModal}>Send it dude!</Button>
       </div>
     )
 
@@ -84,7 +125,10 @@ class KioskMode extends Component {
               placeholder="Large text"
               name="firstName"
               onChange={this.handleInputChange}
-            />
+              inputRef={ref => {
+                this.inputFirstName = ref;
+              }}/>
+
           </FormGroup>
           <FormGroup inline bsSize="large">
             <ControlLabel>Last Name</ControlLabel>
@@ -93,7 +137,10 @@ class KioskMode extends Component {
               placeholder="Large text"
               name="lastName"
               onChange={this.handleInputChange}
-            />
+              inputRef={ref => {
+                this.inputLastName = ref;
+              }}/>
+
           </FormGroup>
           <FormGroup bsSize="large">
             <ControlLabel>Email Address</ControlLabel>
@@ -105,7 +152,10 @@ class KioskMode extends Component {
             placeholder="email"
             name="email"
             onChange={this.handleInputChange}
-          />
+            inputRef={ref => {
+              this.inputEmail = ref;
+            }}/>
+
 
           {/* <Email
             className="form-control input-lg"
@@ -116,7 +166,10 @@ class KioskMode extends Component {
           /> */}
           </FormGroup>
 
-          <Checkbox defaultChecked name="emailOptIn"               onChange={this.handleInputChange} >
+          <Checkbox
+            checked={this.state.emailOptIn}
+            name="emailOptIn"
+            onChange={this.handleInputChange} >
             Do you want to sign up for this shit or not?????
           </Checkbox>
 
@@ -124,6 +177,22 @@ class KioskMode extends Component {
         </Form>
         </Panel>
         </Grid>
+
+        <Modal bsSize="small" show={this.state.successModal} onHide={this.closeSuccessModal}>
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-sm">Success!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>CRAP</h4>
+
+            {/* <h4>{this.state.responseDataMessage}</h4> */}
+          </Modal.Body>
+          <Modal.Footer>
+            {/* <Button onClick={this.closeSuccessModal}>Cancel</Button> */}
+            <Button bsStyle="success" onClick={this.closeSuccessModal}>Sweet</Button>
+          </Modal.Footer>
+
+        </Modal>
 
       </div>
 
