@@ -69,7 +69,7 @@ class AddMember extends Component {
   render() {
     const panelFooter = (
       <div>
-        <Button href='/members'>Cancel</Button>
+        <Button href='/app/members'>Cancel</Button>
         {` `}
         <Button bsStyle="success" onClick={this.addMemberSubmit}>Add Member</Button>
       </div>

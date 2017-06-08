@@ -26,12 +26,12 @@ class NavLeft extends Component {
     return (
       <div style={{background: '#232a2f', color: '#FFF', width: 220}}>
         <SideNav highlightBgColor='gray' highlightColor='white'>
-          <Nav id='dashboard'>
+          <Nav id='app/dashboard'>
             <NavIcon><FaDashboard size={20} /></NavIcon>
 
             <NavText>  Dashboard </NavText>
           </Nav>
-          <Nav id='members'>
+          <Nav id='app/members'>
             <NavIcon><FaUsers size={20}/></NavIcon>
             <NavText> Members </NavText>
             {/* <Nav id='viewmembers'>
@@ -43,7 +43,7 @@ class NavLeft extends Component {
               <NavText> Add Member </NavText>
             </Nav>
           </Nav>
-          <Nav id='calendar'>
+          <Nav id='app/calendar'>
             <NavIcon><FaBullhorn size={20} /></NavIcon>
               <NavText>  Announcements </NavText>
           </Nav>

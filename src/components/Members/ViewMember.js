@@ -40,7 +40,7 @@ class ViewMember extends Component {
 
   closeSuccessModal() {
     this.setState({showSuccessModal: false})
-    this.props.history.push(`/members`)
+    this.props.history.push(`/app/members`)
 
   }
 

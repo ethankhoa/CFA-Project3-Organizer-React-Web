@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import EmptyLayout from '../App/EmptyLayout';
+
 // import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 // import KioskMode from '../Members/KioskMode';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
@@ -37,8 +40,12 @@ class NavMain extends Component {
       </Nav>
       <Nav pullRight>
         <NavItem eventKey={1} >Hi Logged In User</NavItem>
-        <NavItem eventKey={1} href="/kiosk">
-        Go Kiosk Mode
+
+        <NavItem eventKey={1}>
+          <Link to={'/kiosk'}>
+          Go Kiosk Mode
+
+          </Link>
         </NavItem>
 
         <NavDropdown eventKey={3} title="Do Stuff" id="basic-nav-dropdown">

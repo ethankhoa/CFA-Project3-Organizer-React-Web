@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import NavMain from '../Nav/NavMain';
 import NavLeft from '../Nav/NavLeft';
 import Main from '../Main/Main';
+import MainLayout from './MainLayout';
+import EmptyLayout from './EmptyLayout';
+import Dashboard from '../Dashboard/Dashboard';
+import Members from '../Members/Members';
+import Calendar from '../Calendar/Calendar';
+import AddMember from '../Members/AddMember';
+import KioskMode from '../Members/KioskMode';
+import ViewMember from '../Members/ViewMember';
 import './App.css';
 
 class App extends Component {
@@ -16,13 +25,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavMain />
-          <Col xs={6} md={2}>
-            <NavLeft />
-          </Col>
-          <Col xs={12} md={10}>
-            <Main />
-          </Col>
+        <Switch>
+          <Route path="/app" component={MainLayout}/>
+          <Route exact path="/kiosk" component={KioskMode}/>
+          {/* <Route exact path='/kiosk' render={() => (<KioskMode/>)}/> */}
+
+        </Switch>
       </div>
 
 
