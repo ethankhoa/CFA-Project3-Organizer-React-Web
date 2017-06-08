@@ -30,12 +30,18 @@ class KioskMode extends Component {
     this.resetState = this.resetState.bind(this);
     this.showSuccessModal = this.showSuccessModal.bind(this);
     this.closeSuccessModal = this.closeSuccessModal.bind(this);
+    this.addMemberSubmit = this.addMemberSubmit.bind(this);
   }
 
   resetState() {
     this.inputFirstName.value = '';
     this.inputLastName.value = '';
     this.inputEmail.value = '';
+    this.setState({
+      firstName: false,
+      lastName: false,
+      email: false
+    })
   }
 
 
@@ -61,10 +67,10 @@ class KioskMode extends Component {
   addMemberSubmit() {
     const URL = `http://localhost:3000/members`
     Axios.post(URL, {
-      "firstName": this.inputFirstName.value,
-      "lastName": this.inputLastName.value,
-      "email": this.inputEmail.value,
-      "emailOptIn": this.inputEmailOptIn.checked
+      "firstName": this.state.firstName,
+      "lastName": this.state.lastName,
+      "email": this.state.email,
+      "emailOptIn": this.state.emailOptIn
       // "isMember": this.inputIsMember.checked,
     }).then((response) => {
       console.log(response.data)
@@ -96,9 +102,9 @@ class KioskMode extends Component {
 
     const panelFooter = (
       <div>
-      <Button bsSize="large">Cancel this shit man!</Button>
+      <Button bsSize="large" onClick={this.resetState}>Cancel this shit man!</Button>
       {` `}
-      <Button bsSize="large" bsStyle="success" onClick={this.showSuccessModal}>Send it dude!</Button>
+      <Button bsSize="large" bsStyle="success" onClick={this.addMemberSubmit}>Send it dude!</Button>
       </div>
     )
 
@@ -183,7 +189,8 @@ class KioskMode extends Component {
             <Modal.Title id="contained-modal-title-sm">Success!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>CRAP</h4>
+            <h4>Success!</h4>
+            <h4>You've signed up successfully.</h4>
 
             {/* <h4>{this.state.responseDataMessage}</h4> */}
           </Modal.Body>
