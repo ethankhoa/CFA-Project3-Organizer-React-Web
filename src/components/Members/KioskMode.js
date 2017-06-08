@@ -1,41 +1,71 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, FormControl, Checkbox } from 'react-bootstrap';
+import {
+  Grid,
+  Button,
+  Form,
+  FormGroup,
+  FormControl,
+  Checkbox,
+  Panel,
+  ControlLabel
+}
+from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 import Email from 'react-email-autocomplete';
-
-
 
 class KioskMode extends Component {
 
   render() {
-    return(
+
+    const panelTitle = (
+      <h4>SIGN UP FOR SHIT</h4>
+    )
+
+    const panelFooter = (
       <div>
+      <Button bsSize="large">Cancel this shit man!</Button>
+      {` `}
+      <Button bsSize="large" bsStyle="success">Send it dude!</Button>
+      </div>
+    )
+
+    return (
+      <div>
+        <Grid>
         <h2>KIOSK MODE!!!!!!!</h2>
         <p>fuck no buttons please shit</p>
-        <Button className="pull-right" href="/app/dashboard">Exit Kiosk Mode </Button>
+        <Button href="/app/dashboard">Exit Kiosk Mode
+        </Button>
+        {` `}
 
+        <h3>SIGN UP FOR SHIT</h3>
+
+        <Panel bsStyle="info" footer={panelFooter}>
+        {` `}
         <Form>
           <FormGroup inline bsSize="large">
-            <FormControl type="text" placeholder="Large text" />
+            <ControlLabel>First Name</ControlLabel>
+            <FormControl type="text" placeholder="Large text"/>
           </FormGroup>
           <FormGroup inline bsSize="large">
-            <FormControl type="text" placeholder="Large text" />
+            <ControlLabel>Last Name</ControlLabel>
+            <FormControl type="text" placeholder="Large text"/>
+          </FormGroup>
+          <FormGroup>
+          <label htmlFor="eac-input">Email address</label>
+          <Email className="form-control input-lg" placeholder="bruce@example.com"/>
           </FormGroup>
 
-          <Email className="form-control input-lg" placeholder="bruce@example.com"/>
-
-
-          <Checkbox defaultChecked >
+          <Checkbox defaultChecked>
             Do you want to sign up for this shit or not?????
           </Checkbox>
 
-          <Button>Cancel this shit man!</Button>
-          <Button bsStyle="success">Send it dude!</Button>
-        </Form>
 
+        </Form>
+        </Panel>
+        </Grid>
 
       </div>
-
 
     )
   }
