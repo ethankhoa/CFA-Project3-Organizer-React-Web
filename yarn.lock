@@ -906,7 +906,7 @@ babel-register@^6.24.1:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@6.23.0, babel-runtime@^6.11.6, babel-runtime@^6.18.0, babel-runtime@^6.22.0:
+babel-runtime@6.23.0, babel-runtime@^6.11.6, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.6.1:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -4922,6 +4922,12 @@ react-draggable@^2.1.1, react-draggable@^2.2.6:
   resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-2.2.6.tgz#3a806e10f2da6babfea4136be6510e89b0d76901"
   dependencies:
     classnames "^2.2.5"
+
+react-email-autocomplete@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-email-autocomplete/-/react-email-autocomplete-1.0.2.tgz#baa3fba6896ba84b35aca12d1d0ab0ced709dfb9"
+  dependencies:
+    babel-runtime "^6.6.1"
 
 react-error-overlay@^1.0.7:
   version "1.0.7"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import NavMain from '../Nav/NavMain';
 import NavLeft from '../Nav/NavLeft';
@@ -12,6 +12,8 @@ import Calendar from '../Calendar/Calendar';
 import AddMember from '../Members/AddMember';
 import KioskMode from '../Members/KioskMode';
 import ViewMember from '../Members/ViewMember';
+import NotFound from './NotFound';
+
 import './App.css';
 
 class App extends Component {
@@ -28,6 +30,10 @@ class App extends Component {
         <Switch>
           <Route path="/app" component={MainLayout}/>
           <Route exact path="/kiosk" component={KioskMode}/>
+          <Redirect exact path="/" to="app"/>
+          <Route component={NotFound} />
+
+
           {/* <Route exact path='/kiosk' render={() => (<KioskMode/>)}/> */}
 
         </Switch>
