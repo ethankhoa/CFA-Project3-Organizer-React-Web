@@ -33,7 +33,7 @@ class AddMember extends Component {
   closeSuccessModal() {
     this.setState({successModal: false});
     console.log('close success', this.state.member.data);
-    this.props.history.push(`/members/${this.state.member.data._id}`);
+    this.props.history.push(`/app/members/${this.state.member.data._id}`);
   }
 
   addMemberSubmit() {
@@ -212,7 +212,7 @@ class AddMember extends Component {
               <Form>
                 <br/>
                 Is the member currently subscribed to the weekly newsletter?
-                <Checkbox inputRef={ref => {
+                <Checkbox defaultChecked inputRef={ref => {
                   this.inputEmailOptIn = ref;
                 }}>
                   This Week at Chatswood Subscription

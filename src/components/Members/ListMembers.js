@@ -12,7 +12,7 @@ const ListMembers = (props) => {
         ? <p>Loading...
           </p>
         : <ListGroup>
-          {props.members.map((member, i) => <ListGroupItem key={i} href={`/app/members/${member._id}`}>{member.name.first} {member.name.last}
+          {props.members.map((member, i) => <ListGroupItem key={i} href={`/app/members/${member._id}`}>{member.name.first} {member.name.last} - {member.email}
 
             {/* <Link to={{ pathname: `/members/${member._id}` }}>
           <Button bsStyle="success" bsSize="small" className="pull-right">View</Button>

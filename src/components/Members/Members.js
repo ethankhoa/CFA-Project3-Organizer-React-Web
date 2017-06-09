@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Well, Button } from 'react-bootstrap';
+import { Col, Well, Button, Form, FormGroup, FormControl } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
 import ListMembers from './ListMembers';
@@ -55,7 +55,11 @@ render() {
       <Col xs={6} md={6}>
         <Well>
           <h4>Search</h4>
-          <Button>Add New Member</Button>
+          <Form>
+            <FormGroup>
+              <FormControl type="text" placeholder="Enter your search here" />
+            </FormGroup>
+          </Form>
         </Well>
       </Col>
     </div>

@@ -10,6 +10,8 @@ import {
   Col
 } from 'react-bootstrap';
 import {Form, FormGroup, FormControl, ControlLabel, Checkbox} from 'react-bootstrap';
+import Loadable from 'react-loading-overlay';
+
 
 class ViewMember extends Component {
   constructor(props) {

@@ -8,7 +8,8 @@ import {
   Checkbox,
   Panel,
   ControlLabel,
-  Modal
+  Modal,
+  Col
 }
 from 'react-bootstrap';
 // import { Route } from 'react-router-dom';
@@ -109,12 +110,15 @@ class KioskMode extends Component {
 
     return (
       <div>
-        <Grid>
         <Loadable
           active={false}
           spinner
           text='Loading your content...'
           >
+
+        <Grid>
+          <Col>
+
         <h2>KIOSK MODE!!!!!!!</h2>
         <p>Fill out your info below to sign up for the weekly newsletter.</p>
         <Button href="/app/dashboard">Exit Kiosk Mode
@@ -184,9 +188,6 @@ class KioskMode extends Component {
 
         </Form>
         </Panel>
-      </Loadable>
-        </Grid>
-
         <Modal bsSize="small" show={this.state.successModal} onHide={this.closeSuccessModal}>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-sm">Success!</Modal.Title>
@@ -202,6 +203,11 @@ class KioskMode extends Component {
           </Modal.Footer>
 
         </Modal>
+        </Col>
+        </Grid>
+
+
+      </Loadable>
 
       </div>
 
