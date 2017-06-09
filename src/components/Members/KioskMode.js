@@ -122,10 +122,10 @@ class KioskMode extends Component {
         <Grid>
           <Col>
             <PageHeader>
-        KIOSK MODE!!!!!!!
+        <img src="https://chatswoodchurch.org/wp-content/themes/adventist-spd-peace/images/logo/top/Chatswood_b@2x.png" />
         <Button className="pull-right" href="/app/dashboard">Exit Kiosk Mode
         </Button>
-        <small><p>Fill out your info below to sign up for the weekly newsletter.</p></small>
+        <small><p>Please fill out your info below to receive updates.</p></small>
 
         {` `}
         </PageHeader>
