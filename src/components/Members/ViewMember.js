@@ -419,7 +419,16 @@ class ViewMember extends Component {
               </Modal>
             </div>
           )
-          : ('Loading man1!!!!!!!!!...')}
+          : (
+            <Loadable
+              active={true}
+              spinner
+              text='Loading your content...'
+              >
+            </Loadable>
+
+          )
+          }
 
       </div>
 

@@ -9,13 +9,15 @@ import {
   Panel,
   ControlLabel,
   Modal,
-  Col
+  Col,
+  PageHeader
 }
 from 'react-bootstrap';
 // import { Route } from 'react-router-dom';
 // import Email from 'react-email-autocomplete';
 import Axios from 'axios';
 import Loadable from 'react-loading-overlay';
+import './KioskMode.css';
 
 class KioskMode extends Component {
   constructor(props) {
@@ -26,7 +28,8 @@ class KioskMode extends Component {
       email: false,
       emailOptIn: true,
       inputText: false,
-      successModal: false
+      successModal: false,
+      isActive: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.resetState = this.resetState.bind(this);
@@ -109,7 +112,7 @@ class KioskMode extends Component {
 
 
     return (
-      <div>
+      <div className="height-full bg-dark">
         <Loadable
           active={false}
           spinner
@@ -118,12 +121,14 @@ class KioskMode extends Component {
 
         <Grid>
           <Col>
-
-        <h2>KIOSK MODE!!!!!!!</h2>
-        <p>Fill out your info below to sign up for the weekly newsletter.</p>
-        <Button href="/app/dashboard">Exit Kiosk Mode
+            <PageHeader>
+        KIOSK MODE!!!!!!!
+        <Button className="pull-right" href="/app/dashboard">Exit Kiosk Mode
         </Button>
+        <small><p>Fill out your info below to sign up for the weekly newsletter.</p></small>
+
         {` `}
+        </PageHeader>
 
         <h3>SIGN UP</h3>
 
