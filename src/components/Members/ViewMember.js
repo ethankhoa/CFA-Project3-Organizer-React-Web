@@ -88,8 +88,8 @@ class ViewMember extends Component {
     Axios.get(URL).then((response) => {
       this.setState({member: response.data});
       console.log(response.data);
-      // console.log("member" + this.state.member);
-      // console.log(JSON.stringify(this.state.member));
+      console.log("member" + this.state.member);
+      console.log(JSON.stringify(this.state.member));
     }).catch((error) => {
       console.log(error);
     });

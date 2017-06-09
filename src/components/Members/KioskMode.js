@@ -27,6 +27,7 @@ class KioskMode extends Component {
       lastName: false,
       email: false,
       emailOptIn: true,
+      emailOptIn: false,
       inputText: false,
       successModal: false,
       isActive: false
@@ -75,7 +76,8 @@ class KioskMode extends Component {
       "firstName": this.state.firstName,
       "lastName": this.state.lastName,
       "email": this.state.email,
-      "emailOptIn": this.state.emailOptIn
+      "emailOptIn": this.state.emailOptIn,
+      "isMember": this.state.isMember
       // "isMember": this.inputIsMember.checked,
     }).then((response) => {
       console.log(response.data)
@@ -105,7 +107,7 @@ class KioskMode extends Component {
       <div>
       <Button bsSize="large" onClick={this.resetState}>Cancel </Button>
       {` `}
-      <Button bsSize="large" bsStyle="success" onClick={this.addMemberSubmit}>Send it dude!</Button>
+      <Button bsSize="large" bsStyle="success" onClick={this.addMemberSubmit}>Sign Up</Button>
       </div>
     )
 
@@ -139,7 +141,7 @@ class KioskMode extends Component {
             <ControlLabel>First Name</ControlLabel>
             <FormControl
               type="text"
-              placeholder="Large text"
+              placeholder="First Name"
               name="firstName"
               onChange={this.handleInputChange}
               inputRef={ref => {
@@ -151,7 +153,7 @@ class KioskMode extends Component {
             <ControlLabel>Last Name</ControlLabel>
             <FormControl
               type="text"
-              placeholder="Large text"
+              placeholder="Last Name"
               name="lastName"
               onChange={this.handleInputChange}
               inputRef={ref => {
@@ -166,7 +168,7 @@ class KioskMode extends Component {
 
           <FormControl
             type="email"
-            placeholder="email"
+            placeholder="Email Address"
             name="email"
             onChange={this.handleInputChange}
             inputRef={ref => {

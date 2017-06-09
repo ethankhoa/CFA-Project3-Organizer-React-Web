@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Col } from 'react-bootstrap';
-import NavMain from '../Nav/NavMain';
-import NavLeft from '../Nav/NavLeft';
-import Main from '../Main/Main';
+// import { Col } from 'react-bootstrap';
+// import NavMain from '../Nav/NavMain';
+// import NavLeft from '../Nav/NavLeft';
+// import Main from '../Main/Main';
 import MainLayout from './MainLayout';
-import EmptyLayout from './EmptyLayout';
-import Dashboard from '../Dashboard/Dashboard';
-import Members from '../Members/Members';
-import Calendar from '../Calendar/Calendar';
-import AddMember from '../Members/AddMember';
+// import EmptyLayout from './EmptyLayout';
+// import Dashboard from '../Dashboard/Dashboard';
+// import Members from '../Members/Members';
+// import Calendar from '../Calendar/Calendar';
+// import AddMember from '../Members/AddMember';
 import KioskMode from '../Members/KioskMode';
-import ViewMember from '../Members/ViewMember';
+// import ViewMember from '../Members/ViewMember';
 import NotFound from './NotFound';
 
 import './App.css';

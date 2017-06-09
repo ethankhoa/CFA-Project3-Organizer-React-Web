@@ -27,7 +27,7 @@ class NavMain extends Component {
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to={`/dashboard`}>
+        <Link to={`/app/dashboard`}>
           <FaRocket size={24}/>
         </Link>
       </Navbar.Brand>
