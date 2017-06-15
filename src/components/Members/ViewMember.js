@@ -69,7 +69,7 @@ class ViewMember extends Component {
   };
 
   deleteMember() {
-    const URL = `http://localhost:3000/members/${this.props.match.params.id}`
+    const URL = `${process.env.REACT_APP_CO_MONGOLAB_LOCAL_URI}/members/${this.props.match.params.id}`
     Axios.delete(URL).then((response) => {
       console.log(response.data);
       this.closeDeleteConfirmModal();
@@ -84,7 +84,7 @@ class ViewMember extends Component {
 
   getMember() {
     // console.log("params?" + this.props.match.params.id)
-    const URL = `http://localhost:3000/members/${this.props.match.params.id}`
+    const URL = `${process.env.REACT_APP_CO_MONGOLAB_LOCAL_URI}/members/${this.props.match.params.id}`
     Axios.get(URL).then((response) => {
       this.setState({member: response.data});
       console.log(response.data);
@@ -112,7 +112,7 @@ class ViewMember extends Component {
   }
 
   editMemberSubmit() {
-    const URL = `http://localhost:3000/members/${this.state.member._id}/edit`
+    const URL = `${process.env.REACT_APP_CO_MONGOLAB_LOCAL_URI}/members/${this.state.member._id}/edit`
     Axios.post(URL, {
       "email": this.inputEmail.value,
       //  "title": this.inputTitleName.value,
