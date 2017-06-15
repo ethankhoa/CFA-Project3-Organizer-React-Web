@@ -17,7 +17,6 @@ class MainLayout extends Component {
         {/* <Switch>
           <Route exact path='/kiosk' render={() => (<KioskMode/>)}/>
         </Switch> */}
-        <div>
           <NavMain />
             <Col xs={6} md={2}>
               <NavLeft />
@@ -26,7 +25,6 @@ class MainLayout extends Component {
               <Main />
             </Col>
 
-        </div>
       {/* <div>
         <EmptyLayout />
       </div> */}
