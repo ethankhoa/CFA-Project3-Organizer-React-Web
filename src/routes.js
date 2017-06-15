@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import App from './components/Home/Home';
 import Members from './components/Members/Members';
 import Calendar from './components/Calendar/Calendar';
 
@@ -10,7 +9,6 @@ const Routes = (props) => (
 
   <Switch>
     <Router>
-      <Route path="/" component={Home} />
       <Route path='/members' component={Members} />
       <Route path='/calendar' component={Calendar} />
 
