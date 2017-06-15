@@ -32,7 +32,7 @@ class Members extends Component {
     const URL = `${process.env.REACT_APP_CO_MONGOLAB_LOCAL_URI}/members`
     Axios.get(URL)
       .then((response) => {
-        console.log('what is the url', process.env.CO_MONGOLAB_LOCAL_URI);
+        console.log('what is the url', URL);
         this.setState({ members: response.data });
         // console.log(response.data);
         // console.log("members" + this.state.members);
@@ -40,7 +40,7 @@ class Members extends Component {
       })
       .catch((error) => {
         console.log(error);
-        console.log('what is the url', process.env.REACT_APP_CO_MONGOLAB_LOCAL_URI);
+        console.log('what is the url', process.env.URL);
 
       });
 

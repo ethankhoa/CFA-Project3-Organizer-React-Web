@@ -71,7 +71,7 @@ class KioskMode extends Component {
   }
 
   addMemberSubmit() {
-    const URL = `http://localhost:3000/members`
+    const URL = `${process.env.REACT_APP_CO_MONGOLAB_LOCAL_URI}/members`
     Axios.post(URL, {
       "firstName": this.state.firstName,
       "lastName": this.state.lastName,
