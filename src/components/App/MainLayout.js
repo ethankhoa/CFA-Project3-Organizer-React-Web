@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import KioskMode from '../Members/KioskMode';
 
 import { Col } from 'react-bootstrap';
-import NavMain from '../Nav/NavMain';
+// import NavMain from '../Nav/NavMain';
 import NavLeft from '../Nav/NavLeft';
 import Main from '../Main/Main';
 import EmptyLayout from './EmptyLayout';
@@ -17,7 +17,7 @@ class MainLayout extends Component {
         {/* <Switch>
           <Route exact path='/kiosk' render={() => (<KioskMode/>)}/>
         </Switch> */}
-          <NavMain />
+          {/* <NavMain /> */}
             <Col xs={6} md={2}>
               <NavLeft />
             </Col>
