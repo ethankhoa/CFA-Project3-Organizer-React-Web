@@ -64,7 +64,7 @@ class KioskMode extends Component {
       [name]: value
       // [id]: value,
     }, () => {
-      console.log("New state in ASYNC callback:", this.state.firstName, this.state.lastName, this.state.email, this.state.emailOptIn);
+      console.log("New state in ASYNC callback:", this.state.firstName, this.state.lastName, this.state.email, this.state.isMember);
     });
     console.log("testing checkbox", this.state.emailOptIn)
 

@@ -172,8 +172,10 @@ class ViewMember extends Component {
                       <p>{this.state.member.address.street}</p>
                       <p>
                         {this.state.member.address.city}
+                        {' '}
                         {this.state.member.address.state}
-                        <p>{this.state.member.address.postCode}</p>
+                        {' '}
+                        {this.state.member.address.postCode}
                       </p>
                     </p>
                   )
