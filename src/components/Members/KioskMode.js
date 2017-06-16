@@ -26,7 +26,6 @@ class KioskMode extends Component {
       firstName: false,
       lastName: false,
       email: false,
-      emailOptIn: true,
       emailOptIn: false,
       inputText: false,
       successModal: false,
