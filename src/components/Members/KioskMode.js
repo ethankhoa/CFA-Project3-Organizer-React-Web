@@ -29,7 +29,8 @@ class KioskMode extends Component {
       emailOptIn: false,
       inputText: false,
       successModal: false,
-      isActive: false
+      isActive: false,
+      isMember: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.resetState = this.resetState.bind(this);
